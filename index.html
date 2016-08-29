@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Game of life</title>
+        <link rel="stylesheet" type="text/css" href="styles/gol_style.css">
+    </head>
+    <body>
+        <header>
+            <h1>Game of life</h1>
+        </header>
+
+        <section>
+            <header>
+                <h3>Type the order of the grid, e.g., if you want a 3x3 grid, type only 3</h3>
+            </header>
+            <label>Order</label>
+            <input type="number" name="order" min="0">
+            <button onclick="createGrid()">Create the grid</button>
+        </section>
+        <section class="gol-canvas">
+            <canvas id="environment"></canvas>
+        </section>
+
+        <button id ="next-button" onclick="createNewGeneration()" class="hidden">Next Generation</button>
+
+        <!-- include source files here... -->
+        <script src="src/environment-canvas.js"></script>
+        <script src="src/Cell.js"></script>
+        <script src="src/Environment.js"></script>
+        
+    </body>
+</html>
