@@ -11,17 +11,26 @@
 
         <section>
             <header>
-                <h3>Type the order of the grid, e.g., if you want a 3x3 grid, type only 3</h3>
+                <h3>Type the size of the grid, e.g., if you want a 3x3 grid, type only 3</h3>
             </header>
-            <label>Order</label>
-            <input type="number" name="order" min="0">
-            <button onclick="createGrid()">Create the grid</button>
-        </section>
-        <section class="gol-canvas">
-            <canvas id="environment"></canvas>
         </section>
 
-        <button id ="next-button" onclick="createNewGeneration()" class="hidden">Next Generation</button>
+        <section>
+            <div>
+                <label>Grid size:</label>
+                <input type="number" id="grid-size" min="0">
+                <button onclick="createGrid()">Create the grid</button>
+            </div>
+        </section>
+
+        <section>
+            <div>
+                <canvas id="environment"></canvas>
+            </div>
+            <div>
+                <button id ="next-gen-btn" onclick="createNewGeneration()" class="hidden">Next Generation</button>
+            </div>
+        </section>
 
         <!-- include source files here... -->
         <script src="src/environment-canvas.js"></script>
