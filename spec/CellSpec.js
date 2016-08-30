@@ -7,10 +7,6 @@ describe('Cell', function() {
         cell = new Cell(true);
     });
     
-    it('Should exists', function() {
-        expect(cell).toBeDefined();
-    });
-    
     it('Should have a state of life', function() {
         expect(cell.isAlive).toBeTruthy();
     });
