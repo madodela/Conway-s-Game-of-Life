@@ -1,7 +1,7 @@
 'use strict';
 
-function Environment(order) {
-    this.order = order;
+function Environment(dimension) {
+    this.dimension = dimension;
     this.cells = [];
 }
 
@@ -9,7 +9,7 @@ Environment.prototype.setCells = function(cells) {
     this.cells = cells;
 };
 
-Environment.prototype.getStatusOfCell = function(x, y) {
+Environment.prototype.getCellStatus = function(x, y) {
     return this.cells[x][y].isAlive;
 };
 
@@ -17,9 +17,9 @@ Environment.prototype.getStatusOfNeighbours = function(x, y) {
     var result = {'dead': 0, 'alive': 0},
         cells = this.cells;
     
-    if(x + 1 < this.order) {
+    if(x + 1 < this.dimension) {
         result[isAliveOrDead(x + 1, y)]++;
-        if(y + 1 < this.order) {
+        if(y + 1 < this.dimension) {
             result[isAliveOrDead(x + 1, y + 1)]++;
         }
         if(y - 1 >= 0) {
@@ -28,7 +28,7 @@ Environment.prototype.getStatusOfNeighbours = function(x, y) {
     }
     if(x - 1 >= 0) {
         result[isAliveOrDead(x - 1, y)]++;
-        if(y + 1 < this.order) {
+        if(y + 1 < this.dimension) {
             result[isAliveOrDead(x - 1, y + 1)]++;
         }
         if(y - 1 >= 0) {
@@ -36,9 +36,10 @@ Environment.prototype.getStatusOfNeighbours = function(x, y) {
         }
     }
 
-    if(y + 1 < this.order) {
+    if(y + 1 < this.dimension) {
 	   result[isAliveOrDead(x, y + 1)]++;
 	}
+    
 	if(y - 1 >= 0) {
         result[isAliveOrDead(x, y - 1)]++;
     }
