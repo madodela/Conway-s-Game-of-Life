@@ -65,13 +65,12 @@ Environment.prototype.judgeCell = function(x, y) {
 };
 
 Environment.prototype.nextGeneration = function() {
-    var nextGeneration = [],
-        len = this.cells.length;
+    var nextGeneration = [];
     
-    for(let i = 0; i < len; i++) {
-        let row = [];
-        for(let o = 0; o < len; o++) {
-            row.push(this.judgeCell(i, o));
+    for(let x_position = 0, row = []; x_position < this.dimension; x_position++) {
+        row = [];
+        for(let y_position = 0; y_position < this.dimension; y_position++) {
+            row.push(this.judgeCell(x_position, y_position));
         }
         nextGeneration.push(row);
     }
