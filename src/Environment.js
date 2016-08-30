@@ -53,13 +53,14 @@ Environment.prototype.getAliveNeighbours = function(x, y) {
 
 Environment.prototype.judgeCell = function(x, y) {
     var aliveNeigbours = this.getAliveNeighbours(x, y),
-        cell = new Cell(this.cells[x][y].isAlive);
-    if(aliveNeigbours < 2 || aliveNeigbours > 3) {
-        cell.die();
-    }
-    if(aliveNeigbours === 3) {
-        cell.revive();
-    }
+        cell = new Cell(this.cells[x][y].isAlive),
+        underpopulation = aliveNeigbours < 2,
+        overcrowding = aliveNeigbours > 3,
+        reborn = aliveNeigbours === 3;
+
+    (underpopulation || overcrowding) && cell.die();
+    reborn && cell.revive();
+
     return cell;
 };
 
