@@ -1,28 +1,28 @@
 'use strict';
 
-describe('Cell', function() {
+describe('Cell', function () {
     var cell;
     
-    beforeEach(function() {
+    beforeEach(function () {
         cell = new Cell(true);
     });
     
-    it('Should have a state of life', function() {
+    it('Should have a state of life', function () {
         expect(cell.isAlive).toBeTruthy();
     });
-    it('Should be dead or alive', function() {
+    it('Should be dead or alive', function () {
         var deadCell = new Cell(false),
             invalidCell = new Cell('A');
         expect(cell.isAlive).toBe(true);
         expect(deadCell.isAlive).toBe(false);
         expect(invalidCell.isAlive).not.toBe(true);
     });
-    it('Should die', function() {
+    it('Should die', function () {
         expect(cell.die).toBeDefined();
         cell.die();
         expect(cell.isAlive).toBe(false);
     });
-    it('Should revive', function() {
+    it('Should revive', function () {
         cell.die();
         expect(cell.revive).toBeDefined();
         cell.revive();

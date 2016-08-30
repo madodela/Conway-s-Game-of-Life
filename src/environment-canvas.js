@@ -4,33 +4,6 @@ var cellsPositions = [],
 	gridSize = 0,
 	canvas;
 
-function createGrid() {
-
-	gridSize = document.getElementById('grid-size').value;
-	if(!!gridSize && gridSize > 0) {
-		cellsPositions = [];
-		drawCanvas();
-	} else {
-		alert("Please type valid gridSize");
-	}
-}
-
-function drawCanvas() {
-	var elem = document.getElementById('environment'),
-	  	gridHeightWidth = gridSize * 33.75,
-	  	elemHeightWidth = Math.round(gridHeightWidth) + 15;
-  	
-	elem.width = elemHeightWidth;
-	elem.height = elemHeightWidth;
-	elem.addEventListener('click', changeCellStatus);
- 
- 	canvas = elem.getContext('2d');
-  	canvas.fillStyle = "#ccc";
-	canvas.clearRect(10, 10, gridHeightWidth, gridHeightWidth);
-
-  	drawCells();
-}
-
 function changeCellStatus(event) {
 	var x = event.offsetX,
 		y = event.offsetY;
@@ -48,6 +21,32 @@ function changeCellStatus(event) {
 			return;
 		}
 	});
+}
+
+function drawCanvas() {
+	var elem = document.getElementById('environment'),
+        gridHeightWidth = gridSize * 33.75,
+        elemHeightWidth = Math.round(gridHeightWidth) + 15;
+  	
+	elem.width = elemHeightWidth;
+	elem.height = elemHeightWidth;
+	elem.addEventListener('click', changeCellStatus);
+ 
+    canvas = elem.getContext('2d');
+    canvas.fillStyle = "#ccc";
+    canvas.clearRect(10, 10, gridHeightWidth, gridHeightWidth);
+
+    drawCells();
+}
+
+function createGrid() {
+	gridSize = document.getElementById('grid-size').value;
+	if (!!gridSize && gridSize > 0) {
+		cellsPositions = [];
+		drawCanvas();
+	} else {
+		alert("Please type valid gridSize");
+	}
 }
 
 function changeCellCanvas(cell){

@@ -4,10 +4,10 @@ function Cell(isAlive) {
     this.isAlive = isAlive;
 }
 
-Cell.prototype.die = function() {
+Cell.prototype.die = function () {
     this.isAlive = false;
 };
 
-Cell.prototype.revive = function() {
+Cell.prototype.revive = function () {
     this.isAlive = true;
 };
