@@ -28,10 +28,10 @@ describe('Environment', function() {
         var cellPositionX = 0, cellPositionY = 0;
         expect(environment.getCellStatus(cellPositionX, cellPositionY)).toBe(false);
     });
-    it('Should know the state of a cell\'s neighbours', function() {
+    it('Should know the number of alive neighbours', function() {
         var cellPositionX = 1, cellPositionY = 0;
-        expect(environment.getStatusOfNeighbours(cellPositionX, cellPositionY))
-        .toEqual({'dead': 3, 'alive': 2});
+        expect(environment.getAliveNeighbours(cellPositionX, cellPositionY))
+        .toEqual(2);
     });
     
     it('Should kill the cell by underpopulation', function(){

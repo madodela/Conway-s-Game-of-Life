@@ -13,50 +13,51 @@ Environment.prototype.getCellStatus = function(x, y) {
     return this.cells[x][y].isAlive;
 };
 
-Environment.prototype.getStatusOfNeighbours = function(x, y) {
-    var result = {'dead': 0, 'alive': 0},
-        cells = this.cells;
+Environment.prototype.getAliveNeighbours = function(x, y) {
+    var aliveNeigbours = 0,
+        cells = this.cells,
+        isNotOutOfLeftEdge = x - 1 >= 0,
+        isNotOutOfRightEdge = x + 1 < this.dimension,
+        isNotOutOfTopEdge = y - 1 >= 0,
+        isNotOutOfBottomEdge = y + 1 < this.dimension;
     
-    if(x + 1 < this.dimension) {
-        result[isAliveOrDead(x + 1, y)]++;
-        if(y + 1 < this.dimension) {
-            result[isAliveOrDead(x + 1, y + 1)]++;
+    if(isNotOutOfLeftEdge) {
+        cells[x-1][y].isAlive && aliveNeigbours++;
+        if(isNotOutOfBottomEdge) {
+            cells[x-1][y+1].isAlive && aliveNeigbours++;
         }
-        if(y - 1 >= 0) {
-            result[isAliveOrDead(x + 1, y - 1)]++;
-        }
-    }
-    if(x - 1 >= 0) {
-        result[isAliveOrDead(x - 1, y)]++;
-        if(y + 1 < this.dimension) {
-            result[isAliveOrDead(x - 1, y + 1)]++;
-        }
-        if(y - 1 >= 0) {
-            result[isAliveOrDead(x - 1, y - 1)]++;
+        if(isNotOutOfTopEdge) {
+            cells[x-1][y-1].isAlive && aliveNeigbours++;
         }
     }
 
-    if(y + 1 < this.dimension) {
-	   result[isAliveOrDead(x, y + 1)]++;
-	}
-    
-	if(y - 1 >= 0) {
-        result[isAliveOrDead(x, y - 1)]++;
+    if(isNotOutOfRightEdge) {
+        cells[x+1][y].isAlive && aliveNeigbours++;
+        if(isNotOutOfBottomEdge) {
+            cells[x+1][y+1].isAlive && aliveNeigbours++;
+        }
+        if(isNotOutOfTopEdge) {
+            cells[x+1][y-1].isAlive && aliveNeigbours++;
+        }
     }
-    return result;
 
-    function isAliveOrDead(x, y) {
-        return cells[x][y].isAlive ? 'alive': 'dead';
+    if(isNotOutOfBottomEdge) {
+        cells[x][y+1].isAlive && aliveNeigbours++;
     }
+
+	if(isNotOutOfTopEdge) {
+        cells[x][y-1].isAlive && aliveNeigbours++;
+    }
+    return aliveNeigbours;
 };
 
 Environment.prototype.judgeCell = function(x, y) {
-    var neighboursStats = this.getStatusOfNeighbours(x, y),
+    var aliveNeigbours = this.getAliveNeighbours(x, y),
         cell = new Cell(this.cells[x][y].isAlive);
-    if(neighboursStats.alive < 2 || neighboursStats.alive > 3) {
+    if(aliveNeigbours < 2 || aliveNeigbours > 3) {
         cell.die();
     }
-    if(neighboursStats.alive === 3) {
+    if(aliveNeigbours === 3) {
         cell.revive();
     }
     return cell;
