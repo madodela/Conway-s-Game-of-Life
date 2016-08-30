@@ -19,7 +19,7 @@ In order to run the specs I created, open in your browser the **SpecRunner.html*
 
 ### UI
 
-A basic UI was build using a canvas, where you can choose the size of the grid(Environment dimension) where the cells are going to be, and after that you can click in the grid to choose the state of the cells.
+The file **index.html** has a basic UI, which was build using a canvas, there you can choose the size of the grid (Environment dimension) where the cells are going to be, after that you can click in the grid to choose the state of the cells.
 
 A live cell is green and a dead cell is gray.
 
