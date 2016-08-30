@@ -19,7 +19,6 @@ describe('Cell', function() {
     });
     it('Should die', function() {
         expect(cell.die).toBeDefined();
-        expect(cell.isAlive).toBe(true);
         cell.die();
         expect(cell.isAlive).toBe(false);
     });
